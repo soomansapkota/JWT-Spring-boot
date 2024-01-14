@@ -11,21 +11,14 @@ import com.example.project.jwt.repository.UserRepository;
 @Service
 public class userDetailsServi implements UserDetailsService {
   
-	
+	@Autowired
 	public UserRepository userRepo;
 
-	public userDetailsServi(UserRepository userRepo) {
-		this.userRepo = userRepo;
-		
-	}
+
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		return (UserDetails) userRepo.findByEmail("email").orElseThrow(()->new UsernameNotFoundException("User Not Found"));
 	}
-	
-	
-  
-	
-	
 }

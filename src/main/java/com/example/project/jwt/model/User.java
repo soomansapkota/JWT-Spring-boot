@@ -18,6 +18,16 @@ public class User {
 	private String address;
 	private String email;
 	private String password;
+	private String roles;
+	
+	
+	
+	public String getRoles() {
+		return roles;
+	}
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
 	public int getId() {
 		return id;
 	}
