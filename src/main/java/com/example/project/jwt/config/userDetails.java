@@ -23,7 +23,7 @@ public class userDetails implements UserDetails{
 	public userDetails(User user) {
 		email = user.getEmail();
 		password = user.getPassword();
-		authorities = Arrays.stream(user.getRoles().split(","))
+		authorities = Arrays.stream(user.getUserRoles().split(","))
 				.map(SimpleGrantedAuthority::new)
 				.collect(Collectors.toList());
 	}

@@ -1,6 +1,8 @@
 package com.example.project.jwt.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -18,15 +20,19 @@ public class User {
 	private String address;
 	private String email;
 	private String password;
-	private String roles;
+	@Enumerated(EnumType.STRING)
+	private String UserRoles;
 	
 	
 	
-	public String getRoles() {
-		return roles;
+
+	
+
+	public String getUserRoles() {
+		return UserRoles;
 	}
-	public void setRoles(String roles) {
-		this.roles = roles;
+	public void setUserRoles(String userRoles) {
+		UserRoles = userRoles;
 	}
 	public int getId() {
 		return id;
