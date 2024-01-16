@@ -11,6 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.project.jwt.model.User;
+import com.example.project.jwt.model.UserRoles;
 
 
 
@@ -18,20 +19,22 @@ public class userDetails implements UserDetails{
 
 	String email = null;
 	String password = null;
+	UserRoles role =null;
 	List<GrantedAuthority> authorities;
 	
 	public userDetails(User user) {
 		email = user.getEmail();
 		password = user.getPassword();
-		authorities = Arrays.stream(user.getUserRoles().split(","))
-				.map(SimpleGrantedAuthority::new)
-				.collect(Collectors.toList());
+		role=user.getUserRoles();
+//		authorities = Arrays.stream(user.getUserRoles())
+//				.map(SimpleGrantedAuthority::new)
+//				.collect(Collectors.toList());
 	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return authorities;
+		return List.of(new SimpleGrantedAuthority(role.name()));
 	}
 
 	@Override

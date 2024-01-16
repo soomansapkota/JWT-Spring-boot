@@ -5,6 +5,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 
@@ -21,18 +22,27 @@ public class User {
 	private String email;
 	private String password;
 	@Enumerated(EnumType.STRING)
-	private String UserRoles;
+	private UserRoles userRoles;
+	
+	@OneToOne(mappedBy = "user")
+	private RefreshToken refreshToken;
 	
 	
 	
 
 	
 
-	public String getUserRoles() {
-		return UserRoles;
+	public RefreshToken getRefreshToken() {
+		return refreshToken;
+	}
+	public void setRefreshToken(RefreshToken refreshToken) {
+		this.refreshToken = refreshToken;
+	}
+	public UserRoles getUserRoles() {
+		return userRoles;
 	}
 	public void setUserRoles(String userRoles) {
-		UserRoles = userRoles;
+		userRoles = userRoles;
 	}
 	public int getId() {
 		return id;
