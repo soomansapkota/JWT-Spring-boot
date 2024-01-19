@@ -28,10 +28,6 @@ public class User {
 	private RefreshToken refreshToken;
 	
 	
-	
-
-	
-
 	public RefreshToken getRefreshToken() {
 		return refreshToken;
 	}
