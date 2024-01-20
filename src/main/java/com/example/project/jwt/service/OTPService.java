@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class OTPService {
 	
-	private final EmailServiceImpl emailServiceImpl;
+	//private final EmailServiceImpl emailServiceImpl;
 
 	public String generateOtp() {
 		
@@ -17,7 +17,7 @@ public class OTPService {
 		
 		String subject1 = subject;
 		String body1 = body + otp;
-		emailServiceImpl.sendEmail(email, subject1, body1); 
+		//emailServiceImpl.sendEmail(email, subject1, body1); 
 	}
 	
 }

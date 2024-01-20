@@ -24,16 +24,16 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private UserRoles userRoles;
 	
-	@OneToOne(mappedBy = "user")
-	private RefreshToken refreshToken;
-	
-	
-	public RefreshToken getRefreshToken() {
-		return refreshToken;
-	}
-	public void setRefreshToken(RefreshToken refreshToken) {
-		this.refreshToken = refreshToken;
-	}
+//	@OneToOne(mappedBy = "user")
+//	private RefreshToken refreshToken;
+//	
+//	
+//	public RefreshToken getRefreshToken() {
+//		return refreshToken;
+//	}
+//	public void setRefreshToken(RefreshToken refreshToken) {
+//		this.refreshToken = refreshToken;
+//	}
 	public UserRoles getUserRoles() {
 		return userRoles;
 	}

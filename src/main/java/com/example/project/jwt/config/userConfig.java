@@ -12,35 +12,36 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.example.project.jwt.service.AuthFilterService;
+
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
 public class userConfig{
 	
-	private final userDetailsServi userdetailsservice;
-	
-	public userConfig(userDetailsServi userdetailsservice)
+	private userDetailsServi userdetailsservice;
+
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception
 	{
-		this.userdetailsservice =userdetailsservice;
-		
-	}
-	
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity httpSecurity)throws Exception
-	{
-		httpSecurity.csrf(AbstractHttpConfigurer::disable)
-		.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/","/home").permitAll()
+	//	httpSecurity.csrf(AbstractHttpConfigurer::disable)
+		httpSecurity.authorizeHttpRequests((requests) -> requests
+				.requestMatchers("/api/v1/get").permitAll()
 				
-				.anyRequest().authenticated())
+				.anyRequest().authenticated());
 		
-				.formLogin((form) -> form
-						.loginPage("/login")
-						.defaultSuccessUrl("/")
-						.loginProcessingUrl("/")
-						.permitAll()
-					);
+//				.formLogin((form) -> form
+//						.loginPage("/")
+//						.defaultSuccessUrl("/")
+//						.loginProcessingUrl("/")
+//						.permitAll()
+//					);
 		httpSecurity.authenticationProvider(authenticationProvider());
+//		httpSecurity.addFilterBefore(authFilterService, UsernamePasswordAuthenticationFilter.class);
 				
 		return httpSecurity.build();
 	}
