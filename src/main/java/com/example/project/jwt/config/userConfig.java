@@ -1,5 +1,6 @@
 package com.example.project.jwt.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,15 +22,15 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
 public class userConfig{
-	
+	@Autowired
 	private userDetailsServi userdetailsservice;
 
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception
 	{
-	//	httpSecurity.csrf(AbstractHttpConfigurer::disable)
-		httpSecurity.authorizeHttpRequests((requests) -> requests
+		httpSecurity.csrf(AbstractHttpConfigurer::disable)
+		.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/api/v1/get").permitAll()
 				
 				.anyRequest().authenticated());
