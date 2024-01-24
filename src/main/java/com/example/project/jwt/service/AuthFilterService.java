@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import com.example.project.jwt.config.userDetails;
 import com.example.project.jwt.config.userDetailsServi;
@@ -20,9 +22,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 public class AuthFilterService extends OncePerRequestFilter{
-
+    @Autowired
 	private final JwtService jwtService;
-	
+    @Lazy
+	@Autowired
 	private final userDetailsServi userDetailsServi;
 	
 	public AuthFilterService(JwtService jwtService,userDetailsServi userDetailsServi) {

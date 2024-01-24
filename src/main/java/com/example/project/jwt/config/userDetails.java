@@ -13,10 +13,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.project.jwt.model.User;
 import com.example.project.jwt.model.UserRoles;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 
+@Builder
+@AllArgsConstructor
 public class userDetails implements UserDetails{
-
 	String email = null;
 	String password = null;
 	UserRoles role =null;
@@ -26,7 +29,7 @@ public class userDetails implements UserDetails{
 		email = user.getEmail();
 		password = user.getPassword();
 		role=user.getUserRoles();
-//		authorities = Arrays.stream(user.getUserRoles())
+//	    authorities = Arrays.stream(user.getUserRoles().split(","))
 //				.map(SimpleGrantedAuthority::new)
 //				.collect(Collectors.toList());
 	}
@@ -71,6 +74,11 @@ public class userDetails implements UserDetails{
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	public void setPassword(String encode) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

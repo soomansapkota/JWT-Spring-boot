@@ -7,11 +7,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Builder;
 
 
 
 @Entity
 @Table(name="user_tbl")
+@Builder
 public class User {
 
 	@Id
@@ -37,8 +39,8 @@ public class User {
 	public UserRoles getUserRoles() {
 		return userRoles;
 	}
-	public void setUserRoles(String userRoles) {
-		userRoles = userRoles;
+	public void setUserRoles(UserRoles userRoles) {
+		this.userRoles = userRoles;
 	}
 	public int getId() {
 		return id;

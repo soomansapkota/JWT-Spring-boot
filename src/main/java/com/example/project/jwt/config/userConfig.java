@@ -31,7 +31,7 @@ public class userConfig{
 	{
 		httpSecurity.csrf(AbstractHttpConfigurer::disable)
 		.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/api/v1/get").permitAll()
+				.requestMatchers("/api/v1/add","/api/v1/welcome").permitAll()
 				
 				.anyRequest().authenticated());
 		

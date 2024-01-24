@@ -50,11 +50,11 @@ public class JwtService {
 
 
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+        return createToken(new HashMap<>(), userDetails);
     }
 
     // generate token using Jwt utility class and return token as String
-    public String generateToken(
+    public String  createToken(
             Map<String, Object> extraClaims,
             UserDetails userDetails
     ) {
@@ -83,4 +83,9 @@ public class JwtService {
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
+
+	public String generateToken(String email) {
+		// TODO Auto-generated method stub
+		return email;
+	}
 }
