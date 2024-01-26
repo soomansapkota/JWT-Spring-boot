@@ -72,22 +72,13 @@ public class userController {
 //        } 
 //    }
 
-	@PostMapping("/generateToken")
-	public String authenticateAndGetToken(@RequestBody LoginRequest loginRequest) { 
-	    Authentication authentication = authenticationManager.authenticate(
-	        new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
-	    ); 
-
-	    if (authentication.isAuthenticated()) { 
-	        userDetails userDetails = (userDetails) authentication.getPrincipal();
-	        if (userDetails != null) {
-	            return jwtService.generateToken(userDetails);
-	        } else {
-	            return jwtService.generateToken(loginRequest.getEmail());
-	        }
-	    } else { 
-	        throw new RuntimeException("Invalid user request!");
-	    } 
-	}
-
+    @PostMapping("/generateToken") 
+    public String authenticateAndGetToken(@RequestBody LoginRequest authRequest) { 
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword())); 
+        if (authentication.isAuthenticated()) { 
+            return jwtService.generateToken(authRequest.getEmail()); 
+        } else { 
+            throw new RuntimeException("invalid user request !"); 
+        } 
+    }
 }

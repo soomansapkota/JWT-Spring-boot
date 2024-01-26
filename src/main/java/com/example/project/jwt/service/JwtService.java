@@ -8,6 +8,8 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.example.project.jwt.config.userDetails;
+
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -49,19 +51,19 @@ public class JwtService {
     }
 
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(String userDetails) {
         return createToken(new HashMap<>(), userDetails);
     }
 
     // generate token using Jwt utility class and return token as String
     public String  createToken(
             Map<String, Object> extraClaims,
-            UserDetails userDetails
+            String userDetails
     ) {
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(userDetails)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 105 * 1000))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
@@ -84,8 +86,5 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-	public String generateToken(String email) {
-		// TODO Auto-generated method stub
-		return email;
-	}
+
 }
